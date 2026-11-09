@@ -1,0 +1,71 @@
+NOTICE
+======
+
+This project is a rewrite, not an original work. Everything below is
+credited because this repository would not exist without it.
+
+
+Original authors
+----------------
+
+Ultralytics (https://github.com/ultralytics/ultralytics)
+    Authors of YOLO and of the `ultralytics` package that this project
+    depends on for detection, segmentation and multi-object tracking.
+    The `ultralytics` package is licensed AGPL-3.0. The 2023 source
+    snapshot that the ancestor of this project vendored (version 8.0.3)
+    was licensed GPL-3.0.
+
+Muhammad Moin Faisal (https://github.com/MuhammadMoinFaisal)
+    Author of the original "YOLOv8 Segmentation with DeepSORT Object
+    Tracking (ID + Trails)" project:
+    https://github.com/MuhammadMoinFaisal/YOLOv8_Segmentation_DeepSORT_Object_Tracking
+
+    The ideas this project reimplements come from that work: running
+    instance segmentation per frame, handing the boxes to a tracker,
+    labelling each object with its persistent id, and drawing a motion
+    trail behind it. The accompanying Colab notebooks and video
+    tutorials are his as well.
+
+    That project is licensed GPL-3.0.
+
+
+Lineage of this repository
+--------------------------
+
+    ultralytics/ultralytics (GPL-3.0 at v8.0.3, now AGPL-3.0)
+      -> MuhammadMoinFaisal/YOLOv8_Segmentation_DeepSORT_Object_Tracking (GPL-3.0)
+         -> mhdarif09/objecttracking (fork; README attribution removed,
+            LICENSE deleted, no code changes)
+            -> this repository (rewrite, AGPL-3.0, attribution restored)
+
+The `mhdarif09/objecttracking` fork is listed for traceability: this
+project started as an audit of that fork. That fork removed the links
+crediting Muhammad Moin Faisal and deleted the GPL-3.0 LICENSE file
+while keeping the GPL-3.0 headers in every source file. Restoring the
+license and the credit is the reason this NOTICE exists.
+
+
+Licensing of this repository
+----------------------------
+
+This repository is licensed AGPL-3.0 (see LICENSE), because it links
+against `ultralytics`, which is AGPL-3.0. GPL-3.0 section 13 permits
+this combination. Portions whose design derives from the GPL-3.0 work
+above remain available under GPL-3.0 at their original source.
+
+No source file from either upstream project is copied into this
+repository. The tracking pipeline here is written against the public
+`ultralytics` Python API.
+
+
+Not included from upstream, on purpose
+--------------------------------------
+
+- The vendored `ultralytics` 8.0.3 source tree (13,369 lines). This
+  project installs `ultralytics` from PyPI instead.
+- `deep_sort_pytorch` and its ReID checkpoint, which upstream asked
+  users to download from a third-party Google Drive folder. The
+  trackers used here (BoT-SORT, ByteTrack) ship with `ultralytics`.
+- The two Colab notebooks (10 MB and 16 MB, embedded outputs). One of
+  them contained a hard-coded Roboflow API key in plain text. No
+  credential from upstream is reproduced here.
