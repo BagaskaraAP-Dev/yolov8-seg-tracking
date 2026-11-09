@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "segtrack"
+version = "1.0.0"
+description = "YOLO instance segmentation with multi-object tracking, trails and line counting"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "AGPL-3.0-or-later" }
+authors = [{ name = "Bagaskara Amukti Palapa" }]
+keywords = ["yolo", "segmentation", "object-tracking", "bytetrack", "botsort", "opencv"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+
+# Upper bounds are deliberate. The project this replaces pinned
+# `numpy>=1.18.5` and `torch>=1.7.0` with no ceiling, so a fresh install
+# pulled NumPy 2.x into code that still called the removed `np.float`.
+dependencies = [
+    "ultralytics>=8.3.0,<9",
+    "numpy>=1.23,<3",
+    "opencv-python>=4.8,<5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "ruff>=0.6",
+]
+
+[project.scripts]
+segtrack = "segtrack.cli:main"
+
+[project.urls]
+Source = "https://github.com/BagaskaraAP-Dev/yolov8-seg-tracking"
+Issues = "https://github.com/BagaskaraAP-Dev/yolov8-seg-tracking/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]

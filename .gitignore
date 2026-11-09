@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+
+# Model weights: fetched on first run, never committed
+*.pt
+*.onnx
+*.engine
+
+# Media: inputs and renders stay out of git history
+*.mp4
+*.avi
+*.mov
+*.mkv
+runs/
+outputs/
+
+# Notebook outputs are stripped before commit; see CONTRIBUTING.md
+.ipynb_checkpoints/
